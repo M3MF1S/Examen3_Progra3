@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ExamenFinalProgra3ModelStoreContainer" CdmEntityContainer="ExamenFinalProgra3Entities1">
+    <EntitySetMapping Name="Empleados">
+      <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Empleados">
+        <MappingFragment StoreEntitySet="Empleados">
+          <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+          <ScalarProperty Name="pnombre" ColumnName="pnombre" />
+          <ScalarProperty Name="snombre" ColumnName="snombre" />
+          <ScalarProperty Name="pApellido" ColumnName="pApellido" />
+          <ScalarProperty Name="sApellido" ColumnName="sApellido" />
+          <ScalarProperty Name="fechanacimiento" ColumnName="fechanacimiento" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telefono" ColumnName="telefono" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Proyectos">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="idpro" ColumnName="idpro" />
+          <ScalarProperty Name="npro" ColumnName="npro" />
+          <ScalarProperty Name="fechaI" ColumnName="fechaI" />
+          <ScalarProperty Name="fechaF" ColumnName="fechaF" />
+          <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+          <ScalarProperty Name="rolid" ColumnName="rolid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="rolid" ColumnName="rolid" />
+          <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+          <ScalarProperty Name="roles1" ColumnName="roles" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salarios">
+      <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Salarios">
+        <MappingFragment StoreEntitySet="Salarios">
+          <ScalarProperty Name="SalariosId" ColumnName="SalariosId" />
+          <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+          <ScalarProperty Name="salario" ColumnName="salario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

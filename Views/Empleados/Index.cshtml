@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ExamenFInalProgramacion3_MatthiasPaniagua.Controllers.Empleados>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pnombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.snombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fechanacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direccion)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pnombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.snombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fechanacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.telefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direccion)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmpleadoId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmpleadoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmpleadoId })
+        </td>
+    </tr>
+}
+
+</table>

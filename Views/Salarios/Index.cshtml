@@ -1,0 +1,40 @@
+﻿@model IEnumerable<ExamenFInalProgramacion3_MatthiasPaniagua.Controllers.Salarios>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.salario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empleados.pnombre)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.salario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Empleados.pnombre)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SalariosId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SalariosId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SalariosId })
+        </td>
+    </tr>
+}
+
+</table>

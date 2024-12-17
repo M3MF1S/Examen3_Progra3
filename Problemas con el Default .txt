@@ -1,0 +1,3 @@
+Profe en la base de datos en la direccion del empleado y 
+en las fechas puse restricciones con usted habia dicho,
+parece que el DEFAULT no me lo agarra en VisualStudio

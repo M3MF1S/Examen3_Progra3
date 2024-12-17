@@ -1,0 +1,35 @@
+﻿@model ExamenFInalProgramacion3_MatthiasPaniagua.Controllers.Roles
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Roles</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.roles1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.roles1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleados.pnombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleados.pnombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.rolid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

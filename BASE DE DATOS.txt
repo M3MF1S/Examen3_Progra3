@@ -1,0 +1,46 @@
+create database ExamenFinalProgra3
+use ExamenFinalProgra3
+
+
+create table Empleados(
+EmpleadoId int identity(1,1) primary key,
+pnombre nvarchar(12) not null,
+snombre nvarchar(12),
+pApellido nVarchar(12) not null,
+sApellido nVarchar(12),
+fechanacimiento date not null,
+email nvarchar(26) ,
+telefono nvarchar(12) not null,
+direccion text default 'San Jose',
+)
+insert into Empleados(pnombre,pApellido,fechanacimiento,
+email,telefono)values('Matthias','Paniagua','2004-11-07',
+'matthiasp2004@gmail.com','87746218')
+
+create table Salarios(
+SalariosId int identity(1,1) primary key,
+EmpleadoId int,
+constraint FK_EmpleadoIdS foreign key(EmpleadoId) references Empleados(EmpleadoId),
+salario float default 250000 check(salario between 250000 and 500000),
+)
+insert into Salarios(salario)values(400000)
+
+
+
+create table Roles(
+rolid int identity(1,1) primary key,
+EmpleadoId int,
+roles nvarchar(15),)
+INSERT INTO Roles(roles)VALUES ('Admin'),('Operario'),('Peon')
+
+
+create table Proyectos(
+idpro int identity(1,1) primary key,
+npro nvarchar(15),
+fechaI date default GETDATE(),
+fechaF date default GETDATE(),
+EmpleadoId int, rolid int,
+constraint FK_EmpleadoIdP foreign key(EmpleadoId) references Empleados(EmpleadoId),
+constraint FK_rolidP foreign key(rolid) references roles(rolid),
+)
+insert into Proyectos(npro,EmpleadoId,rolid)values('Test',1,1)

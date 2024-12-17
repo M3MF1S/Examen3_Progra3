@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ExamenFinalProgra3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Empleados">
+    <Key>
+      <PropertyRef Name="EmpleadoId" />
+    </Key>
+    <Property Name="EmpleadoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="pnombre" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="snombre" Type="nvarchar" MaxLength="12" />
+    <Property Name="pApellido" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="sApellido" Type="nvarchar" MaxLength="12" />
+    <Property Name="fechanacimiento" Type="date" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="26" />
+    <Property Name="telefono" Type="nvarchar" MaxLength="12" Nullable="false" />
+    <Property Name="direccion" Type="text" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="idpro" />
+    </Key>
+    <Property Name="idpro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="npro" Type="nvarchar" MaxLength="15" />
+    <Property Name="fechaI" Type="date" />
+    <Property Name="fechaF" Type="date" />
+    <Property Name="EmpleadoId" Type="int" />
+    <Property Name="rolid" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="rolid" />
+    </Key>
+    <Property Name="rolid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpleadoId" Type="int" />
+    <Property Name="roles" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="RolesE">
+    <Key>
+      <PropertyRef Name="rolid" />
+    </Key>
+    <Property Name="rolid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="roles" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Salarios">
+    <Key>
+      <PropertyRef Name="SalariosId" />
+    </Key>
+    <Property Name="SalariosId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpleadoId" Type="int" />
+    <Property Name="salario" Type="float" />
+  </EntityType>
+  <Association Name="FK_EmpleadoIdP">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoId" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="EmpleadoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoIdR">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+    <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoId" />
+      </Principal>
+      <Dependent Role="Roles">
+        <PropertyRef Name="EmpleadoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmpleadoIdS">
+    <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+    <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleados">
+        <PropertyRef Name="EmpleadoId" />
+      </Principal>
+      <Dependent Role="Salarios">
+        <PropertyRef Name="EmpleadoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_rolidP">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+    <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="rolid" />
+      </Principal>
+      <Dependent Role="Proyectos">
+        <PropertyRef Name="rolid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ExamenFinalProgra3ModelStoreContainer">
+    <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolesE" EntityType="Self.RolesE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Salarios" EntityType="Self.Salarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_EmpleadoIdP" Association="Self.FK_EmpleadoIdP">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoIdR" Association="Self.FK_EmpleadoIdR">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Roles" EntitySet="Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmpleadoIdS" Association="Self.FK_EmpleadoIdS">
+      <End Role="Empleados" EntitySet="Empleados" />
+      <End Role="Salarios" EntitySet="Salarios" />
+    </AssociationSet>
+    <AssociationSet Name="FK_rolidP" Association="Self.FK_rolidP">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Proyectos" EntitySet="Proyectos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,59 @@
+﻿@model ExamenFInalProgramacion3_MatthiasPaniagua.Controllers.Proyectos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Proyectos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.npro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.npro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleados.pnombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleados.pnombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Roles.roles1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.roles1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idpro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ExamenFinalProgra3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="EmpleadoId" />
+          </Key>
+          <Property Name="EmpleadoId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pnombre" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="snombre" Type="nvarchar" MaxLength="12" />
+          <Property Name="pApellido" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="sApellido" Type="nvarchar" MaxLength="12" />
+          <Property Name="fechanacimiento" Type="date" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="26" />
+          <Property Name="telefono" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="direccion" Type="text" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="idpro" />
+          </Key>
+          <Property Name="idpro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="npro" Type="nvarchar" MaxLength="15" />
+          <Property Name="fechaI" Type="date" />
+          <Property Name="fechaF" Type="date" />
+          <Property Name="EmpleadoId" Type="int" />
+          <Property Name="rolid" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="rolid" />
+          </Key>
+          <Property Name="rolid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" />
+          <Property Name="roles" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="RolesE">
+          <Key>
+            <PropertyRef Name="rolid" />
+          </Key>
+          <Property Name="rolid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roles" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Salarios">
+          <Key>
+            <PropertyRef Name="SalariosId" />
+          </Key>
+          <Property Name="SalariosId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpleadoId" Type="int" />
+          <Property Name="salario" Type="float" />
+        </EntityType>
+        <Association Name="FK_EmpleadoIdP">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpleadoIdR">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpleadoIdS">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Salarios">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolidP">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="rolid" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="rolid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenFinalProgra3ModelStoreContainer">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RolesE" EntityType="Self.RolesE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salarios" EntityType="Self.Salarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmpleadoIdP" Association="Self.FK_EmpleadoIdP">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoIdR" Association="Self.FK_EmpleadoIdR">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoIdS" Association="Self.FK_EmpleadoIdS">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Salarios" EntitySet="Salarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolidP" Association="Self.FK_rolidP">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ExamenFinalProgra3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Empleados">
+          <Key>
+            <PropertyRef Name="EmpleadoId" />
+          </Key>
+          <Property Name="EmpleadoId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pnombre" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="snombre" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="pApellido" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sApellido" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="fechanacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+          <Property Name="telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_EmpleadoIdP" FromRole="Empleados" ToRole="Proyectos" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_EmpleadoIdR" FromRole="Empleados" ToRole="Roles" />
+          <NavigationProperty Name="Salarios" Relationship="Self.FK_EmpleadoIdS" FromRole="Empleados" ToRole="Salarios" />
+        </EntityType>
+        <EntityType Name="Proyectos">
+          <Key>
+            <PropertyRef Name="idpro" />
+          </Key>
+          <Property Name="idpro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="npro" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="fechaI" Type="DateTime" Precision="0" />
+          <Property Name="fechaF" Type="DateTime" Precision="0" />
+          <Property Name="EmpleadoId" Type="Int32" />
+          <Property Name="rolid" Type="Int32" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_EmpleadoIdP" FromRole="Proyectos" ToRole="Empleados" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK_rolidP" FromRole="Proyectos" ToRole="Roles" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="rolid" />
+          </Key>
+          <Property Name="rolid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpleadoId" Type="Int32" />
+          <Property Name="roles1" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_EmpleadoIdR" FromRole="Roles" ToRole="Empleados" />
+          <NavigationProperty Name="Proyectos" Relationship="Self.FK_rolidP" FromRole="Roles" ToRole="Proyectos" />
+        </EntityType>
+        <EntityType Name="RolesE">
+          <Key>
+            <PropertyRef Name="rolid" />
+          </Key>
+          <Property Name="rolid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roles" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Salarios">
+          <Key>
+            <PropertyRef Name="SalariosId" />
+          </Key>
+          <Property Name="SalariosId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpleadoId" Type="Int32" />
+          <Property Name="salario" Type="Double" />
+          <NavigationProperty Name="Empleados" Relationship="Self.FK_EmpleadoIdS" FromRole="Salarios" ToRole="Empleados" />
+        </EntityType>
+        <Association Name="FK_EmpleadoIdP">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpleadoIdR">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Roles" Type="Self.Roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Roles">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmpleadoIdS">
+          <End Role="Empleados" Type="Self.Empleados" Multiplicity="0..1" />
+          <End Role="Salarios" Type="Self.Salarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleados">
+              <PropertyRef Name="EmpleadoId" />
+            </Principal>
+            <Dependent Role="Salarios">
+              <PropertyRef Name="EmpleadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_rolidP">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="rolid" />
+            </Principal>
+            <Dependent Role="Proyectos">
+              <PropertyRef Name="rolid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ExamenFinalProgra3Entities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Empleados" EntityType="Self.Empleados" />
+          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="RolesE" EntityType="Self.RolesE" />
+          <EntitySet Name="Salarios" EntityType="Self.Salarios" />
+          <AssociationSet Name="FK_EmpleadoIdP" Association="Self.FK_EmpleadoIdP">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoIdR" Association="Self.FK_EmpleadoIdR">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Roles" EntitySet="Roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmpleadoIdS" Association="Self.FK_EmpleadoIdS">
+            <End Role="Empleados" EntitySet="Empleados" />
+            <End Role="Salarios" EntitySet="Salarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_rolidP" Association="Self.FK_rolidP">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Proyectos" EntitySet="Proyectos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ExamenFinalProgra3ModelStoreContainer" CdmEntityContainer="ExamenFinalProgra3Entities2">
+          <EntitySetMapping Name="Empleados">
+            <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Empleados">
+              <MappingFragment StoreEntitySet="Empleados">
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="pnombre" ColumnName="pnombre" />
+                <ScalarProperty Name="snombre" ColumnName="snombre" />
+                <ScalarProperty Name="pApellido" ColumnName="pApellido" />
+                <ScalarProperty Name="sApellido" ColumnName="sApellido" />
+                <ScalarProperty Name="fechanacimiento" ColumnName="fechanacimiento" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proyectos">
+            <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Proyectos">
+              <MappingFragment StoreEntitySet="Proyectos">
+                <ScalarProperty Name="idpro" ColumnName="idpro" />
+                <ScalarProperty Name="npro" ColumnName="npro" />
+                <ScalarProperty Name="fechaI" ColumnName="fechaI" />
+                <ScalarProperty Name="fechaF" ColumnName="fechaF" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="rolid" ColumnName="rolid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="rolid" ColumnName="rolid" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="roles1" ColumnName="roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RolesE">
+            <EntityTypeMapping TypeName="ExamenFinalProgra3Model.RolesE">
+              <MappingFragment StoreEntitySet="RolesE">
+                <ScalarProperty Name="rolid" ColumnName="rolid" />
+                <ScalarProperty Name="roles" ColumnName="roles" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salarios">
+            <EntityTypeMapping TypeName="ExamenFinalProgra3Model.Salarios">
+              <MappingFragment StoreEntitySet="Salarios">
+                <ScalarProperty Name="SalariosId" ColumnName="SalariosId" />
+                <ScalarProperty Name="EmpleadoId" ColumnName="EmpleadoId" />
+                <ScalarProperty Name="salario" ColumnName="salario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
